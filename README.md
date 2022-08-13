@@ -49,7 +49,7 @@ scheduler.add_job(poetry_func.do, 'cron', hour=8)
 
 ### 每日一句任务
 ```python
-english_today_fun = EnglishTodayFunc(client, './data/EnglishToday.json')
+english_today_fun = poemFunc(client, './data/EnglishToday.json')
 # 定时任务，每日18点执行
 scheduler.add_job(english_today_fun.do, 'cron', hour=18)
 ```

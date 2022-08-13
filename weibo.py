@@ -7,10 +7,10 @@ class WeiboClient(object):
     def __init__(self, access_token):
         self.access_token = access_token
         self.url = 'https://api.weibo.com/2/'
-        self.post_url = self.url + 'statuses/share.json'
+        self.post_url = self.url + 'statuses/upload_url_text/biz.json'
 
     def post(self, status, pic=None):
-        data = {'status': status + '\n————————————\nPowered by https://github.com/chaiqingao/SinaWeiboBot'}
+        data = {'status': status}
         files = None
         params = {'access_token': self.access_token}
         if pic is not None:
@@ -22,4 +22,4 @@ class WeiboClient(object):
                 files = {'pic': ('pic', open(pic, 'rb'))}
             except Exception as e:
                 files = None
-        return json.loads(requests.post(self.post_url, data=data, files=files, params=params).text)
+        return json.loads(requests.post(self.post_url, data=data, files=files, params=params, is_longtext=1, rip='67.220.91.30').text)
